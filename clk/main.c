@@ -17,7 +17,7 @@ void clock_config(){
 	RCC->CFGR &= ~(1 << 21);
 
 	//set usb prescaler to 1.5(72MHz / 1.5 = 48MHz)
-	RCC->CFGR |= RCC_CFGR_USBPRE;
+	RCC->CFGR &= ~(RCC_CFGR_USBPRE);
 
 	//set apb1 prescaler to 2(72MHz / 2 = 36MHz)
 	RCC->CFGR |= (1 << 10);
@@ -25,7 +25,7 @@ void clock_config(){
 
 	//set flash latency to 2 wait states(as per the ref manual)
 	FLASH->ACR |= (1 << 1);
-	FLASH->ACR &= ~((1 << 0) | (1 << 1));
+	FLASH->ACR &= ~((1 << 0) | (1 << 2));
 
 	//enable PLL
 	RCC->CR |= RCC_CR_PLLON;
